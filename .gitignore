@@ -5,4 +5,8 @@ server/.DS.Store
 server/yarn.lock
 server/package-lock.json
 
+# testing
+coverage/
+
 .DS_Store
+server/.env

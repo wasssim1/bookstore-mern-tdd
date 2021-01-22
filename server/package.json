@@ -14,9 +14,13 @@
     "supertest": "^6.1.1"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "startDev": "nodemon server.js",
+    "test": "mocha 'test/*.js' --timeout 10000 --exit",
+    "coverage": "nyc --reporter=html --reporter=text mocha --exit --timeout 10000"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0"
   }
 }
