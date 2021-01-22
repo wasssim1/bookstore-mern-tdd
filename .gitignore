@@ -1,0 +1,8 @@
+.idea/
+
+server/node_modules/
+server/.DS.Store
+server/yarn.lock
+server/package-lock.json
+
+.DS_Store
