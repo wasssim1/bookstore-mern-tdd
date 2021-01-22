@@ -1,9 +1,20 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {returnBook, returnCopy} from "../store/actions/booksActions";
 
 function UserCartSection() {
+    const dispatch = useDispatch();
+
     const userCart = useSelector(state => state.userCart);
     const {cartItems, cartCopyItem} = userCart;
+
+    const onClickRemoveFromCart = bookId => {
+        dispatch(returnBook(bookId));
+    };
+
+    const onClickRemoveCopyFromCart = bookId => {
+        dispatch(returnCopy(bookId));
+    };
 
     return (
         <div className="app_rightSide">
@@ -11,13 +22,16 @@ function UserCartSection() {
             <ul>
                 {cartItems?.map((item, index) => (
                     <li key={index}>
-                        {item.title}
+                        <span>{item.title}{' '}</span>
+                        <button onClick={() => onClickRemoveFromCart(item._id)}>Return</button>
+                        <br/><br/>
                     </li>
                 ))}
                 {
                     cartCopyItem &&
                     <li>
-                        {`${cartCopyItem.title} (Copy)`}
+                        {`${cartCopyItem.title} (Copy)`}{' '}
+                        <button onClick={() => onClickRemoveCopyFromCart(cartCopyItem._id)}>Return</button>
                     </li>
                 }
             </ul>
