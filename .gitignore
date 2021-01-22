@@ -8,5 +8,15 @@ server/package-lock.json
 # testing
 coverage/
 
+client/build/
+client/node_modules/
+client/.DS.Store
+client/package-lock.json
+client/yarn.lock
+client/.eslintcache
+
 .DS_Store
+.env
 server/.env
+client/.env
+

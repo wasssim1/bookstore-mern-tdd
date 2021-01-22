@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+}
+
+.App > h1, h3 {
+    text-align: center;
+}
+
+.app_header {
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    /*background-color: burlywood;*/
+    border: 1px solid burlywood;
+}
+
+.app_content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    /*border: 1px solid burlywood;*/
+}
+
+.app_leftSide {
+    width: 100%;
+    height: 100%;
+    border: 1px solid burlywood;
+}
+
+.app_rightSide {
+    width: 50%;
+    border: 1px solid burlywood;
+}
