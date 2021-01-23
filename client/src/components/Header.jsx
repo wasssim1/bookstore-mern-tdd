@@ -7,7 +7,7 @@ function Header() {
     const {booksList} = books;
 
     const onClickFillData = () => {
-        alert('hey')
+        alert('Data Filled!\n Please reload page.')
         Axios.get("/api/books/seed")
             .then(() => console.log("Data filled!"))
             .then(err => console.error(err));

@@ -2,7 +2,7 @@ const express = require("express");
 const expressAsyncHandler = require("express-async-handler");
 const bookController = require("../controllers/Book.controller");
 const {Book} = require("../models/Book.model");
-const {booksList} = require("../../database/booksList");
+const {booksList} = require("../database/booksList");
 
 const bookRouter = express.Router();
 

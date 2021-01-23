@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 const createError = require("http-errors");
 const bookRouter = require("./routes/Book.route");
@@ -7,21 +8,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-// mongoose
-//     .connect(process.env.MONGODB_URL || "mongodb://localhost/bookstore-hexad", {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//         useCreateIndex: true,
-//     })
-//     .then(() => console.log("Connected to MongoDB..."))
-//     .then(err => {
-//         console.log("Failed to connect to MongoDB...", err);
-//         process.exit();
-//     });
-
+// connect to mongodb service
 const connectWithRetry = () => {
     console.log('MongoDB connection with retry')
-    return mongoose.connect("mongodb://localhost/bookstore-hexad", {
+    return mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/bookstore-hexad", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -40,7 +30,19 @@ mongoose.connection.on('connected', () => {
 
 connectWithRetry().then(() => console.log('========'));
 
+// bookStore api
 app.use("/api/books", bookRouter);
+
+const CLIENT_BUILD_PATH = path.join(__dirname, "../client/build");
+console.log(CLIENT_BUILD_PATH)
+
+// serve static files
+app.use(express.static(CLIENT_BUILD_PATH))
+
+// will redirect all the non-api routes to react frontend
+app.get("/", (req, res) => {
+    res.sendFile(path.join(CLIENT_BUILD_PATH, "index.html"));
+});
 
 //Not existing Route
 app.use((req, res, next) => {
@@ -54,7 +56,7 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500).send(err);
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Serving at http://localhost:${port}.`));
 
 module.exports.port = port;

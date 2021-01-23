@@ -11,9 +11,12 @@
     "http-errors": "^1.8.0",
     "mocha": "^8.2.1",
     "mongoose": "^5.11.13",
+    "path": "^0.12.7",
     "supertest": "^6.1.1"
   },
   "scripts": {
+    "build": "cd .. && cd frontend && npm install && npm run build",
+    "buildThenStart": "cd .. && cd client && npm install && npm run build && cd .. && cd server && npm start",
     "start": "node server.js",
     "startDev": "nodemon server.js",
     "test": "mocha 'test/*.js' --timeout 10000 --exit",

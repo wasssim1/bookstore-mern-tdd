@@ -2,7 +2,7 @@ const {Book} = require("../models/Book.model");
 const request = require("supertest");
 const expect = require("chai").expect;
 const app = require("../server");
-const {booksList} = require("../../database/booksList");
+const {booksList} = require("../database/booksList");
 
 describe("api/books", () => {
     beforeEach(async () => {
