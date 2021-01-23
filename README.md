@@ -97,6 +97,7 @@ Run this command: (This may take a few minutes)
  ```
      $ docker-compose -f docker-compose.prod.yml up --build    
  ```
+The app will be running on (http://localhost:8080).
 
 # Author
 * [Wassim Mhamdi](https://wassimmhamdi.com)
