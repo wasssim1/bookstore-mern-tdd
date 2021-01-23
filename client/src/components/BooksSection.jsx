@@ -38,28 +38,35 @@ function BooksSection() {
     return (
         <div className="app_leftSide">
             <h3>Available Books</h3>
-            <ul>
-                {booksList?.map((book, index) => (
-                    <li key={index}>
-                        <div>
-                            <b>{book.title}</b>{' '}
-                            <button style={{margin: 10}}
-                                    onClick={() => onClickBorrowBook(book)}
-                                    disabled={!book.inStock > 0}
-                            >
-                                <b>Borrow</b><br/>In Stock({book.inStock})
-                            </button>
-                            <button style={{margin: 10}}
-                                    onClick={() => onClickBorrowBookCopy(book)}
-                                    disabled={!book.copiesInStock > 0}
-                            >
-                                <b>Borrow A Copy</b><br/>In Stock({book.copiesInStock})
-                            </button>
-                            <br/><br/>
-                        </div>
-                    </li>)
-                )}
-            </ul>
+            {loading ?
+                <span>loading...</span>
+                :
+                error ?
+                    <span style={{color: 'red'}}>{error}</span>
+                    :
+                    <ul>
+                        {booksList?.map((book, index) => (
+                            <li key={index}>
+                                <div>
+                                    <b>{book.title}</b>{' '}
+                                    <button style={{margin: 10}}
+                                            onClick={() => onClickBorrowBook(book)}
+                                            disabled={!book.inStock > 0}
+                                    >
+                                        <b>Borrow</b><br/>In Stock({book.inStock})
+                                    </button>
+                                    <button style={{margin: 10}}
+                                            onClick={() => onClickBorrowBookCopy(book)}
+                                            disabled={!book.copiesInStock > 0}
+                                    >
+                                        <b>Borrow A Copy</b><br/>In Stock({book.copiesInStock})
+                                    </button>
+                                    <br/><br/>
+                                </div>
+                            </li>)
+                        )}
+                    </ul>
+            }
         </div>
     );
 }
